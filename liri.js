@@ -7,20 +7,23 @@ var spotify = new Spotify(keys.spotify);
 // require("dotenv").config(); this is the shorter but harder to understand version. always opt for readability
 
 switch(command) {
-    case "concert":
+    case "concert-this":
             newConcert();
             break;
     
-    case "song":
+    case "spotify-this-song":
             findSong();
             break;
     
-    case "movie":
+    case "movie-this":
             movieTime();
             break;
-    case "dewIt":
+    case "do-what-it-says":
             doNow();
             break;
         
 }
 
+function concert() {
+
+}
