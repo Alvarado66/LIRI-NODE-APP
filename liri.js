@@ -48,3 +48,18 @@ function newConcert() {
         console.log(err)
     })
 }
+
+function findSong() {
+    
+
+    spotify.search({ type: 'track', query: input }, function(err, data) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+       
+        console.log("\nArtist(s) Name: " , data.tracks.items[0].artists[0].name); 
+        console.log("Song Name: " , data.tracks.items[0].name)
+        console.log("Album: " , data.tracks.items[0].album.name)
+      });
+}
+
