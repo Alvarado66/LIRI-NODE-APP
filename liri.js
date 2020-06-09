@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
+const moment = require('moment');
 const axios = require('axios').default;
 let command = process.argv[2]
 var keys = require("./keys.js");
@@ -30,12 +31,20 @@ switch(command) {
 }
 
 function newConcert() {
-    const queryUrl = "https://rest.bandsintown.com/artists/" + input.join(" ") + "/events?app_id=codingbootcamp"
+    const queryUrl = "https://rest.bandsintown.com/artists/" + input.join(' ') + "/events?app_id=codingbootcamp"
     axios
         .get(queryUrl)
         .then(function(response) {
 
-        console.log(response.data);
+        // console.log(response.data);
+        
+        for( let j = 0; j < response.data.length; j++) {
+            console.log("\nVenue Location: " + response.data[j].venue.location)
+            console.log("Venue Name " + response.data[j].venue.name)
+            console.log
+        }
   })
-    
+    .catch(function(err) {
+        console.log(err)
+    })
 }
