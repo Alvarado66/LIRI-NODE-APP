@@ -40,8 +40,8 @@ function newConcert() {
         
         for( let j = 0; j < response.data.length; j++) {
             console.log("\nVenue Location: " + response.data[j].venue.location)
-            console.log("Venue Name " + response.data[j].venue.name)
-            console.log
+            console.log("Venue Name: " + response.data[j].venue.name)
+            console.log("Date: " + moment(response.data[j].datetime).format('MM/DD/YYYY'))
         }
   })
     .catch(function(err) {
