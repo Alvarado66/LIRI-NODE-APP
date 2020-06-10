@@ -96,12 +96,16 @@ function movieTime() {
 function doNow() {
     fs.readFile("random.txt", "utf8", function(err, data) {
         var dataArr = data.split(",");
-
+        let commandOne = dataArr[0];
+        let searchInput = dataArr[1];
+        
         if(err) {
             return console.log(err);
         }
     
         console.log(dataArr);
+
+
     })
 }
 
