@@ -60,6 +60,29 @@ function findSong() {
         console.log("\nArtist(s) Name: " , data.tracks.items[0].artists[0].name); 
         console.log("Song Name: " , data.tracks.items[0].name)
         console.log("Album: " , data.tracks.items[0].album.name)
+        console.log("Link: " , data.tracks.items[0].preview_url)
       });
 }
 
+function movieTime () {
+
+    axios.get("http://www.omdbapi.com/?t=" + input.join(' ') + "&y=&plot=short&apikey=trilogy").then(
+    function(response) {
+        console.log("\nTitle: " + response.data.Title);
+        console.log("Date Released: " + response.data.Released);
+        console.log("Rating: " + response.data.imdbRating);
+        console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+        console.log("Country of Origin: " + response.data.Country);
+        console.log("Language: " + response.data.Language);
+        console.log("Main Plot: " + response.data.Plot);
+        console.log("Actors: " + response.data.Actors);
+        
+    })
+    .catch(function(error) {
+        if (error.response) {
+
+            console.log(error);
+ 
+        }
+    })
+}
