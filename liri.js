@@ -3,37 +3,41 @@ dotenv.config();
 const moment = require('moment');
 const axios = require('axios').default;
 var fs = require("fs");
-let command = process.argv[2]
+
 var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
-let input = []
+let inputArr = []
 for (i = 3; i < process.argv.length; i++) {
-    input.push(process.argv[i])
+    inputArr.push(process.argv[i])
 }
-input = input.join(" ")
+
 // require("dotenv").config(); this is the shorter but harder to understand version. always opt for readability
+function runCommand(command = process.argv[2], input = inputArr.join(" ")) {
+    switch (command) {
+        case "concert-this":
+            newConcert(input);
+            break;
 
-switch (command) {
-    case "concert-this":
-        newConcert(input);
-        break;
+        case "spotify-this-song":
+            findSong(input);
+            break;
 
-    case "spotify-this-song":
-        findSong(input);
-        break;
+        case "movie-this":
+            movieTime(input);
+            break;
+        case "do-what-it-says":
+            doNow();
+            break;
 
-    case "movie-this":
-        movieTime(input);
-        break;
-    case "do-what-it-says":
-        doNow();
-        break;
-
+    }
 }
 
-function newConcert() {
+
+function newConcert(input) {
     const queryUrl = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp"
+    console.log(queryUrl);
+    console.log(input);
     axios
         .get(queryUrl)
         .then(function (response) {
@@ -47,7 +51,7 @@ function newConcert() {
             }
         })
         .catch(function (err) {
-            console.log(err)
+            //console.log(err)
         })
 }
 
@@ -68,7 +72,7 @@ function findSong(input) {
     });
 }
 
-function movieTime() {
+function movieTime(input) {
 
     axios.get("http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy").then(
         function (response) {
@@ -94,18 +98,19 @@ function movieTime() {
 
 
 function doNow() {
-    fs.readFile("random.txt", "utf8", function(err, data) {
+    fs.readFile("random.txt", "utf8", function (err, data) {
         var dataArr = data.split(",");
         let commandOne = dataArr[0];
-        let searchInput = dataArr[1];
-        
-        if(err) {
+        let searchInput = dataArr[1].trim();
+
+        if (err) {
             return console.log(err);
         }
-    
-        console.log(dataArr);
 
+        runCommand(commandOne, searchInput);
 
     })
 }
+
+runCommand();
 
