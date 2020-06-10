@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const moment = require('moment');
 const axios = require('axios').default;
+var fs = require("fs");
 let command = process.argv[2]
 var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
@@ -88,4 +89,19 @@ function movieTime() {
 
             }
         })
+
 }
+
+
+function doNow() {
+    fs.readFile("random.txt", "utf8", function(err, data) {
+        var dataArr = data.split(",");
+
+        if(err) {
+            return console.log(err);
+        }
+    
+        console.log(dataArr);
+    })
+}
+
