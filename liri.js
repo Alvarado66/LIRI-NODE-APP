@@ -13,6 +13,8 @@ for (i = 3; i < process.argv.length; i++) {
 }
 
 // require("dotenv").config(); this is the shorter but harder to understand version. always opt for readability
+
+// This switch-case will allow the user to switch between different cases based on the keyword.
 function runCommand(command = process.argv[2], input = inputArr.join(" ")) {
     switch (command) {
         case "concert-this":
@@ -33,7 +35,7 @@ function runCommand(command = process.argv[2], input = inputArr.join(" ")) {
     }
 }
 
-
+// This function will be used to serach concerts by using key term/phrase "concert-this"
 function newConcert(input) {
     const queryUrl = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp"
     console.log(queryUrl);
@@ -55,6 +57,7 @@ function newConcert(input) {
         })
 }
 
+// this function will allow a user to search a song using SPOTIFY-API by using the keyword/phrase "spotify-this-song"
 function findSong(input) {
     if (!input) {
         input = "The Sign, Ace of Base";
