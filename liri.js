@@ -78,6 +78,10 @@ function findSong(input) {
 // This function will allow a user to look up movie details with the keyword/phrase "movie-this"
 function movieTime(input) {
 
+    if (!input) {
+        input = "Mr.Nobody";
+    }
+
     axios.get("http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy").then(
         function (response) {
             console.log("\nTitle: " + response.data.Title);
