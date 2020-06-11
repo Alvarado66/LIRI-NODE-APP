@@ -75,6 +75,7 @@ function findSong(input) {
     });
 }
 
+// This function will allow a user to look up movie details with the keyword/phrase "movie-this"
 function movieTime(input) {
 
     axios.get("http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy").then(
@@ -99,7 +100,7 @@ function movieTime(input) {
 
 }
 
-
+// This function will run at the beginning and read the file name (random.txt) and run accodingly to the keyword or phrase the user enters to run a function that is tied to keyword or phrase.
 function doNow() {
     fs.readFile("random.txt", "utf8", function (err, data) {
         var dataArr = data.split(",");
